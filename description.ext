@@ -1,0 +1,260 @@
+author = "Evolution Gaming";
+onLoadName = "EVO 3 Life v1.2.69";
+onLoadMission = "For more information visit www.evo-life.net";
+loadscreen = "E3L_logo_2015.jpg";
+joinUnassigned = 1;
+respawn = BASE;
+respawndelay = 5;
+disabledAI = true;
+disableChannels[]={0,1,2,3,6};
+enableDebugConsole = 0;
+respawnDialog = 0;
+
+class Header
+{
+	gameType = RPG;
+	minPlayers = 1;
+	maxPlayers = 111;
+};
+
+wreckLimit = 3;
+wreckRemovalMinTime = 30;
+wreckRemovalMaxTime = 120;
+corpseLimit = 30;
+corpseRemovalMinTime = 600;
+corpseRemovalMaxTime = 800;
+
+#include "dialog\MasterHandler.h"
+#include "blackjack.hpp"
+#include "slot_machine.hpp"
+
+class RscTitles
+{
+	#include "dialog\progress.hpp"
+	#include "statusBar.hpp"
+	#include "dialog\hud_nameTags.h"
+};
+
+class CfgFunctions
+{
+	#include "Functions.h"
+	#include "SHK_cruise\cfgfunctions.hpp" 
+};
+
+class CfgSounds
+{
+	sounds[] = {};
+	class SirenLong
+	{
+		name = "SirenLong";
+		sound[] = {"\sounds\Siren_Long.ogg", 1.0, 1};
+		titles[] = {};
+	};
+	
+	class tazersound
+	{
+		name = "Tazersound";
+		sound[] = {"\sounds\tazer.ogg", 0.25, 1};
+		titles[] = {};
+	};
+	
+	class flashbang
+	{
+		name = "flashbang";
+		sound[] = {"\sounds\flashbang.ogg", 1.0, 1};
+		titles[] = {};
+	};
+	class Cuff 
+	{
+		name = "cuff";
+		sound[] = {"\sounds\cuff.ogg", 0.95, 0.95};
+		titles[] = {};
+	};
+	class handcuffs
+    {
+        name="handcuffs";
+		sound[] = {"\sounds\handcuffs.ogg", 1.0, 1};
+		titles[] = {};
+    };
+	class car_lock
+  	{
+    		name = "car_lock";
+    		sound[] = {"\sounds\unlock.ogg", 1.0, 1};
+    		titles[] = {};
+  	};
+
+ 	class unlock
+  	{
+   	 	name = "unlock";
+    		sound[] = {"\sounds\car_lock.ogg", 1.0, 1};
+    		titles[] = {};
+  	};
+	
+	class PhotoSound
+	{
+		name = "PhotoSound";
+		sound[] = {"\sounds\camera_shot.ogg",0.5011872,1.0};
+		titles[] = {};
+	};
+	class jackpot1
+	{
+		name = "jackpot1";
+		sound[] = {"\sounds\jackpot1.ogg", 1, 1};
+		titles[] = {};
+	};
+	class jackpot2
+	{
+		name = "jackpot2";
+		sound[] = {"\sounds\jackpot2.ogg", 1, 1};
+		titles[] = {};
+	};
+	class spin
+	{
+		name = "spin";
+		sound[] = {"\sounds\spin.ogg", 1, 1};
+		titles[] = {};
+	};
+	class Yelp
+	{
+		name = "Yelp";
+		sound[] = {"\sounds\Yelp.ogg", 1.0, 1};
+		titles[] = {};
+	};
+	
+	
+};
+
+class CfgDebriefing
+{
+	class NotWhitelisted
+	{
+		title = "Restricted Access";
+		subtitle = "You are not white-listed to use this slot";
+		description = "You are not allowed to use this slot because you are not trained, try another slot. Check out our website for more details: www.evo-life.net";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+	
+	class Blacklisted
+	{
+		title = "Mission Failed";
+		subtitle = "You are blacklisted from cops";
+		description = "You are not allowed to be a cop due to previous actions and the admins have removed you from being a cop.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+	
+	class SpyGlass
+	{
+		title = "The SpyGlass sees you";
+		subTitle = "You were detected by the SpyGlass";
+		description = "You were detected for cheating and have been reported to the server. Enjoy your day.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+};
+
+class CfgNotifications
+{
+	class MedicalRequestEmerg
+	{
+		title = "Emergency Dispatch";
+		iconPicture = "icons\messageesu.paa";
+		description = "%1";
+		duration = 5;
+		priority = 7;
+	};
+	
+	class DeliveryAssigned
+	{
+		title = "Delivery Job Accepted";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "%1";
+		duration = 10;
+		priority = 7;
+	};
+	
+	class DeliveryFailed
+	{
+		title = "Delivery Job Failed";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconfailed_ca.paa";
+		description = "%1";
+		duration = 7;
+		priority = 7;
+	};
+	
+	class DeliverySucceeded
+	{
+		title = "Delivery Job Completed";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcondone_ca.paa";
+		description = "%1";
+		duration = 6;
+		priority = 6;
+	};
+	
+	class PatrolAssigned
+	{
+		title = "Patrol Mission Assigned";
+		iconPicture = "icons\messagepolice.paa";
+		description = "%1";
+		duration = 10;
+		priority = 7;
+	};
+	
+	class PatrolFailed
+	{
+		title = "Patrol Mission Failed";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconfailed_ca.paa";
+		description = "%1";
+		duration = 7;
+		priority = 7;
+	};
+	
+	class PatrolSucceeded
+	{
+		title = "Patrol Mission Completed";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcondone_ca.paa";
+		description = "%1";
+		duration = 6;
+		priority = 6;
+	};
+	
+	class TextMessage
+	{
+		title = "Received A Text Message";
+		iconPicture = "icons\messagenew.paa";
+		description = "%1";
+		duration = 10;
+		priority = 6;
+	};
+	
+	class PoliceDispatch
+	{
+		title = "Emergency Dispatch";
+		iconPicture = "icons\messagepolice.paa";
+		description = "%1";
+		duration = 10;
+		priority = 6;
+	};
+	
+	class AdminDispatch
+	{
+		title = "Admin Dispatch Center";
+		iconPicture = "icons\messageadmin.paa";
+		description = "%1";
+		duration = 10;
+		priority = 6;
+	};
+	
+	class AdminMessage
+	{
+		title = "Admin Message";
+		iconPicture = "icons\messageadmin.paa";
+		description = "%1";
+		duration = 10;
+		priority = 5;
+	};
+};

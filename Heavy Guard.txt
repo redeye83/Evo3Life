@@ -1,0 +1,35 @@
+//Heavy Guard
+
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
+
+comment "Add containers";
+this forceAddUniform "U_B_CombatUniform_mcam";
+this addItemToUniform "FirstAidKit";
+this addItemToUniform "Chemlight_green";
+for "_i" from 1 to 3 do {this addItemToUniform "30Rnd_65x39_caseless_green";};
+this addVest "V_PlateCarrierSpec_blk";
+this addItemToVest "SmokeShell";
+this addItemToVest "SmokeShellGreen";
+this addItemToVest "Chemlight_green";
+for "_i" from 1 to 2 do {this addItemToVest "HandGrenade";};
+for "_i" from 1 to 7 do {this addItemToVest "30Rnd_65x39_caseless_green";};
+this addBackpack "B_TacticalPack_blk";
+for "_i" from 1 to 24 do {this addItemToBackpack "30Rnd_65x39_caseless_green";};
+this addHeadgear "H_HelmetSpecB_blk";
+this addGoggles "G_Shades_Black";
+
+comment "Add weapons";
+this addWeapon "arifle_Katiba_C_F";
+this addPrimaryWeaponItem "acc_flashlight";
+this addPrimaryWeaponItem "optic_Hamr";
+
+comment "Add items";
+this setObjectTexture [0, "textures\heavy_guard.paa"];

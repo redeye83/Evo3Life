@@ -1,0 +1,33 @@
+//Light Guard
+
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
+
+comment "Add containers";
+this forceAddUniform "U_Rangemaster";
+this addItemToUniform "FirstAidKit";
+this addItemToUniform "Chemlight_green";
+this addItemToUniform "30Rnd_65x39_caseless_green";
+this addVest "V_TacVest_blk_POLICE";
+this addItemToVest "SmokeShell";
+this addItemToVest "SmokeShellGreen";
+this addItemToVest "Chemlight_green";
+for "_i" from 1 to 2 do {this addItemToVest "HandGrenade";};
+for "_i" from 1 to 7 do {this addItemToVest "30Rnd_65x39_caseless_green";};
+this addHeadgear "H_Cap_police";
+this addGoggles "G_Shades_Black";
+
+comment "Add weapons";
+this addWeapon "arifle_Katiba_C_F";
+this addPrimaryWeaponItem "acc_flashlight";
+this addPrimaryWeaponItem "optic_Hamr";
+
+comment "Add items";
+this setObjectTexture [0, "textures\light_guard.paa"];
